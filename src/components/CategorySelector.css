@@ -1,0 +1,46 @@
+.category-selector {
+  margin-bottom: 2rem;
+}
+
+.category-selector h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.category-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 2rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.category-button:hover {
+  border-color: #4a90d9;
+  background: #f0f7ff;
+}
+
+.category-button.selected {
+  border-color: #4a90d9;
+  background: #4a90d9;
+  color: white;
+}
+
+.category-icon {
+  font-size: 1.2rem;
+}
+
+.category-label {
+  font-weight: 500;
+}

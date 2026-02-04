@@ -1,0 +1,18 @@
+.charity-list-empty {
+  text-align: center;
+  padding: 3rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+  color: #666;
+}
+
+.results-count {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.charity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}

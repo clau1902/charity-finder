@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import type { Category } from './types/charity';
+import { charities } from './data/charities';
+import { useCharityFilter } from './hooks/useCharityFilter';
+import { CategorySelector } from './components/CategorySelector';
+import { SearchBar } from './components/SearchBar';
+import { CharityList } from './components/CharityList';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredCharities = useCharityFilter({
+    charities,
+    selectedCategories,
+    searchQuery,
+  });
+
+  const handleToggleCategory = (category: Category) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <header className="app-header">
+        <h1>Charity Finder</h1>
+        <p>Find the perfect charity that matches your interests</p>
+      </header>
+
+      <main className="app-main">
+        <CategorySelector
+          selectedCategories={selectedCategories}
+          onToggleCategory={handleToggleCategory}
+        />
+
+        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+
+        <CharityList charities={filteredCharities} />
+      </main>
+
+      <footer className="app-footer">
+        <p>Make a difference today. Every donation counts.</p>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;

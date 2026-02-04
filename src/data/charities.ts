@@ -1,4 +1,4 @@
-import { Charity } from '../types/charity';
+import type { Charity } from '../types/charity';
 
 export const charities: Charity[] = [
   // Environment
